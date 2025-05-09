@@ -1,5 +1,4 @@
-#ifndef COLORSORT_H
-#define COLORSORT_H
+#pragma once
 
 #include "vex.h"
 
@@ -9,5 +8,3 @@ extern bool ColorLock;
 int ColorSort();
 int DistanceCheck();
 int RingFlip();
-
-#endif

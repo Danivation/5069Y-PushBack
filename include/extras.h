@@ -1,5 +1,4 @@
-#ifndef EXTRAS_H
-#define EXTRAS_H
+#pragma once
 
 
 
@@ -55,5 +54,3 @@ int unjam();
 int corner();
 int ringstop3();
 extern float ConveyorTime;
-
-#endif

@@ -1,17 +1,9 @@
-#ifndef AUTON_H
-#define AUTON_H
+#pragma once
 
 
 
 void setInertial(float angle);
 // Auton functions
-
-
-
-
-
-
-
 
 
 void autonNone();
@@ -32,5 +24,3 @@ void autonRedGoalRushSWP();
 void autonBlueGoalRushSWP();
 
 void autonSkills();
-
-#endif

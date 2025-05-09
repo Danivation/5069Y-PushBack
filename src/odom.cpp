@@ -27,11 +27,11 @@ float reduce_radians(float angle) {
 }
 
 float trueHeading() {
-  return reduce_0_to_360((Inertial.rotation() + Inertial2.rotation()) / 2);
+  return reduce_0_to_360((Inertial1.rotation() + Inertial2.rotation()) / 2);
 }
 
 float trueRotation() {
-  return (Inertial.rotation() + Inertial2.rotation()) / 2;
+  return ((Inertial1.rotation() + Inertial2.rotation()) / 2);
 }
 
 odom::odom() {}
@@ -51,7 +51,7 @@ float odom::getHorizontalChange(float &previousHorizontalPosition) {
 }
 
 float odom::getChangeInRotation(float &previousRotation) {
-  float current = toRadians(Inertial.rotation(degrees));
+  float current = toRadians(trueHeading());
   float delta = current - previousRotation;
   previousRotation = current;
   return delta;
@@ -259,7 +259,7 @@ VecPose odom::calculate_horizontal(float offset, float current_t, float delta_ho
 
 void odom::tracking_task()
 {
-  if (Inertial.isCalibrating() || Inertial2.isCalibrating() || !odomEnabled) {
+  if (Inertial1.isCalibrating() || Inertial2.isCalibrating() || !odomEnabled) {
     h_last = 0.0;
     t_last = 0.0;
     l_last = 0.0;

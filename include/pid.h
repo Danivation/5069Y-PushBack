@@ -1,6 +1,4 @@
-#ifndef PID_H
-#define PID_H
-
+#pragma once
 // Drive control functions
 
 extern bool Settled;
@@ -63,5 +61,3 @@ void Arc(float Distance, float Timeout, float LP, float RP, float KKP, float KKI
 int Align();
 void FrontAlign(int clr, float Timeout, float KP, float mwidth);
 
-
-#endif

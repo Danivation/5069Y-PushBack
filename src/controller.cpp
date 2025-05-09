@@ -12,22 +12,22 @@ float IntStart = 0.1;
 float LoadKI = 0;
 
 // Controller bindings
-extern const vex::controller::axis   ForwardAxis        = Controller1.Axis3;
-extern const vex::controller::axis   TurnAxis           = Controller1.Axis1;
+extern const vex::controller::axis   ForwardAxis        = Controller.Axis3;
+extern const vex::controller::axis   TurnAxis           = Controller.Axis1;
 
-extern const vex::controller::button IntakeInButton     = Controller1.ButtonR1;
-extern const vex::controller::button IntakeOutButton    = Controller1.ButtonR2;
+extern const vex::controller::button IntakeInButton     = Controller.ButtonR1;
+extern const vex::controller::button IntakeOutButton    = Controller.ButtonR2;
 
-extern const vex::controller::button ClampToggle        = Controller1.ButtonDown;
-extern const vex::controller::button DoinkerLToggle     = Controller1.ButtonRight;
-extern const vex::controller::button DoinkerRToggle     = Controller1.ButtonY;
+extern const vex::controller::button ClampToggle        = Controller.ButtonDown;
+extern const vex::controller::button DoinkerLToggle     = Controller.ButtonRight;
+extern const vex::controller::button DoinkerRToggle     = Controller.ButtonY;
 
-extern const vex::controller::button LBUpButton         = Controller1.ButtonL1;
-extern const vex::controller::button LBDownButton       = Controller1.ButtonL2;
-extern const vex::controller::button LBLoadButton       = Controller1.ButtonB;
-extern const vex::controller::button LBAllianceButton   = Controller1.ButtonA;
+extern const vex::controller::button LBUpButton         = Controller.ButtonL1;
+extern const vex::controller::button LBDownButton       = Controller.ButtonL2;
+extern const vex::controller::button LBLoadButton       = Controller.ButtonB;
+extern const vex::controller::button LBAllianceButton   = Controller.ButtonA;
 
-extern const vex::controller::button LBDescore2Button  = Controller1.ButtonX;
+extern const vex::controller::button LBDescore2Button  = Controller.ButtonX;
 
 int selectedAuton = 0;
 int autonMode = 101;
@@ -141,7 +141,6 @@ int AutonSelect()
 
   // new stuff
   Brain.Screen.clearScreen();
-  printf("idfsjdf\n");
   wait(500, msec);
 
   // quals basic wp all 4 (1+4)
@@ -226,7 +225,7 @@ int AutonSelect()
     if (lastX > 240-200/2 && lastX < 240+200/2 && lastY > 200 && lastY < 235 && Brain.Screen.pressing())
     {
       Brain.Screen.clearScreen();
-      Inertial.calibrate();
+      Inertial1.calibrate();
       Inertial2.calibrate();
       Brain.Screen.setFillColor(orange);
       Brain.Screen.setPenColor(black);
@@ -234,15 +233,23 @@ int AutonSelect()
       Brain.Screen.printAt(240-(Brain.Screen.getStringWidth(finalAutoName.c_str())/2), 20, finalAutoName.c_str());
       wait(3, sec);
       setInertial(0);
-      Controller1.rumble(rumbleShort);
+      Controller.rumble(rumbleShort);
       break;
     }
     wait(10, msec);
   }
   while (true)
   {
-    if (trueHeading() > 359.5 || trueHeading() < 0.5) {Brain.Screen.setFillColor(green); Brain.Screen.setPenColor(black);}
-    else {Brain.Screen.setFillColor(red); Brain.Screen.setPenColor(white);}
+    if (trueHeading() > 359.5 || trueHeading() < 0.5)
+    {
+      Brain.Screen.setFillColor(green);
+      Brain.Screen.setPenColor(black);
+    }
+    else
+    {
+      Brain.Screen.setFillColor(red);
+      Brain.Screen.setPenColor(white);
+    }
     Brain.Screen.drawRectangle(-10, -10, 500, 260);
     Brain.Screen.printAt(240-(Brain.Screen.getStringWidth(finalAutoName.c_str())/2), 20, finalAutoName.c_str());
     wait(50, msec);

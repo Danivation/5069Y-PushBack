@@ -1,5 +1,4 @@
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+#pragma once
 
 
 // Controller functions
@@ -10,7 +9,6 @@ extern std::string autonModeName;
 extern bool Bypass;
 
 
-int AllianceBackup();
 int AutonSelect();
 int DrivetrainControl();
 int ConveyorControl();
@@ -26,5 +24,3 @@ int LBDescore2Control();
 int load();
 int descore();
 int descore2();
-
-#endif

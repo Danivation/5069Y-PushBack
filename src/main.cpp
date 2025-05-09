@@ -5,41 +5,26 @@ competition Competition;
 odom Odom;
 std::string selectedAutonName = "";
 
-int inertialbutton()
-{
-  while (true)
-  {
-    if (Controller1.ButtonA.pressing())
-    {
-      Inertial.calibrate();
-      wait(5, sec);
-      Inertial.setHeading(0, degrees);
-      Controller1.rumble(rumbleShort);
-      std::cout << "CALIBRATE DONE \n";
-    }
-  }
-}
-
 int CScreen()
 {
   while (true)
   {
-    Controller1.Screen.clearScreen();
+    Controller.Screen.clearScreen();
 
     /**/
-    Controller1.Screen.setCursor(1, 1);
-    Controller1.Screen.print("I: %3.3f (%1.3f)", trueHeading(), toRadians(trueHeading()));
-    Controller1.Screen.setCursor(2, 1);
-    Controller1.Screen.print("LB: %1.2f", LBRotation.position(turns));
+    Controller.Screen.setCursor(1, 1);
+    Controller.Screen.print("I: %3.3f (%1.3f)", trueHeading(), toRadians(trueHeading()));
+    Controller.Screen.setCursor(2, 1);
+    Controller.Screen.print("LB: %1.2f", LBRotation.position(turns));
     /**
-    Controller1.Screen.setCursor(1, 1);
-    //Controller1.Screen.print("L: %.3f", (LA.velocity(rpm)+LB.velocity(rpm)+LB.velocity(rpm))/3);
-    Controller1.Screen.print("L: %.3f", L.velocity(rpm));
-    Controller1.Screen.setCursor(2, 1);
-    Controller1.Screen.print("R: %.3f", R.velocity(rpm));
+    Controller.Screen.setCursor(1, 1);
+    //Controller.Screen.print("L: %.3f", (LA.velocity(rpm)+LB.velocity(rpm)+LB.velocity(rpm))/3);
+    Controller.Screen.print("L: %.3f", L.velocity(rpm));
+    Controller.Screen.setCursor(2, 1);
+    Controller.Screen.print("R: %.3f", R.velocity(rpm));
     /**/
-    Controller1.Screen.setCursor(3, 1);
-    Controller1.Screen.print("B: %d%%", Brain.Battery.capacity(percent));
+    Controller.Screen.setCursor(3, 1);
+    Controller.Screen.print("B: %d%%", Brain.Battery.capacity(percent));
 
     wait(50, msec);
   }
@@ -50,8 +35,6 @@ int BScreen()
   //Brain.Screen.clearScreen();
   while (true)
   {
-    /**/
-
     //Brain.Screen.printAt(0, 60, true, "true vertical: %.2f", VTracker.position(degrees) * (M_PI * 2) / 360);
     //Brain.Screen.printAt(0, 80, true, "prev v: %f", VPrevious);
 
@@ -59,7 +42,7 @@ int BScreen()
     Odom.currentOdomPose.y = Odom.Y_position;
     //Brain.Screen.printAt(0, 100, true, "global x: %.2f", Odom.X_position);
     //Brain.Screen.printAt(0, 120, true, "global y: %.2f", Odom.Y_position);
-    //Brain.Screen.printAt(0, 140, true, "global theta: %.2f", Inertial.heading());
+    //Brain.Screen.printAt(0, 140, true, "global theta: %.2f", trueHeading());
 
 
     //Brain.Screen.printAt(0, 180, true, "L: %.3f", (LA.velocity(rpm)+LB.velocity(rpm)+LB.velocity(rpm))/3);
@@ -67,14 +50,13 @@ int BScreen()
 
 
     wait(50, msec);
-    /**/
   }
 }
 
 void driver()
 {
   // wait for field control or competition switch
-  waitUntil(((Competition.isFieldControl() || Competition.isCompetitionSwitch()) && Competition.isEnabled()) || Bypass || (Controller1.ButtonUp.pressing() && Controller1.ButtonX.pressing()));
+  waitUntil(((Competition.isFieldControl() || Competition.isCompetitionSwitch()) && Competition.isEnabled()) || Bypass || (Controller.ButtonUp.pressing() && Controller.ButtonX.pressing()));
   wait(10, msec);
 
   std::cout << "DRIVER ACTIVE \n";
@@ -128,7 +110,7 @@ void auton()
     // 6, 12: rush elims
 
     // 1-3: blue ring side
-      // 4-6: blue goal side
+    // 4-6: blue goal side
     // 7-9: red ring side
     // 10-12: red goal side
     default:
@@ -173,7 +155,6 @@ void auton()
       autonRedGoalRushElims();
       break;
     case 201: // skills
-      selectedAutonName = "skills";
       autonSkills();
       break;
   }
@@ -217,7 +198,7 @@ int main()
   /**/
   if ( !VTracker.installed()
     || !ConveyorMotor.installed()
-    || !Inertial.installed()
+    || !Inertial1.installed()
     || !Inertial2.installed()
     || !LA.installed()
     || !LB.installed()
@@ -237,23 +218,26 @@ int main()
   task mAutonSelect(AutonSelect);
   std::cout << "SETUP DONE \n";
 
-  Controller1.Screen.clearScreen();
+  Controller.Screen.clearScreen();
   wait(200, msec);
-  task screen(CScreen);
+  task mCScreen(CScreen);
 
   // calibrate inertial
-  Inertial.calibrate();
+  Inertial1.calibrate();
   Inertial2.calibrate();
   wait(3, sec);
   
   setInertial(0);
-  //Controller1.rumble(rumbleShort);
+  Controller.rumble(rumbleShort);
   std::cout << "CALIBRATE DONE \n";
 
 
   // wait until control is plugged in or bypass is enabled
-  waitUntil(((Competition.isFieldControl() || Competition.isCompetitionSwitch()) && !Competition.isEnabled()) || Bypass || (Controller1.ButtonY.pressing() && Controller1.ButtonRight.pressing()));
-  mAutonSelect.stop();
+  waitUntil(((Competition.isFieldControl() || Competition.isCompetitionSwitch()) && !Competition.isEnabled()) || Bypass || (Controller.ButtonY.pressing() && Controller.ButtonRight.pressing()));
+  mCScreen.stop();
+  Controller.Screen.clearScreen();
+  wait(200, msec);
+  task mCScreen(CScreen);
 
   while (true)
   {

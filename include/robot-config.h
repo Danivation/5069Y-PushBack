@@ -4,10 +4,9 @@ using code = vision::code;
 
 extern brain Brain;
 
-extern controller Controller1;
-extern inertial Inertial;
+extern controller Controller;
+extern inertial Inertial1;
 extern inertial Inertial2;
-extern rotation TWheel;
 extern rotation HTracker;
 extern rotation VTracker;
 

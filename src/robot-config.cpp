@@ -6,7 +6,7 @@ using code = vision::code;
 
 // VEXcode device constructors
 brain Brain;
-controller Controller1  (primary);
+controller Controller  (primary);
 
 motor LA                (PORT11, ratio6_1, true);
 motor LB                (PORT12, ratio6_1, true);
@@ -26,7 +26,7 @@ motor ConveyorMotor     (PORT20, ratio6_1, true);
 
 rotation HTracker       (PORT1, false);    // CORRECT
 rotation VTracker       (PORT2, false);    // CORRECT
-inertial Inertial       (PORT3);
+inertial Inertial1      (PORT3);
 inertial Inertial2      (PORT4);
 
 optical RingColor       (PORT10);
@@ -42,7 +42,6 @@ digital_in LBLimit      (Brain.ThreeWirePort.D);
 
 // unused ports
 motor IntakeMotor       (PORT5, ratio18_1, false);
-rotation TWheel (PORT2, false);
 aivision FrontVision (PORT5);
 
 /*vex-vision-config:begin*

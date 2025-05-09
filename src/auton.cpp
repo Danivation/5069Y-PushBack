@@ -3,13 +3,11 @@
 using namespace vex;
 extern odom Odom;
 
-CMath::Pose currentCMathPose = CMath::Pose(Odom.currentOdomPose.x, Odom.currentOdomPose.y, toRadians(Inertial.heading(degrees)));
-
 void setInertial(float angle)
 {
-  Inertial.setHeading(angle, degrees);
+  Inertial1.setHeading(angle, degrees);
   Inertial2.setHeading(angle, degrees);
-  Inertial.setRotation(angle, degrees);
+  Inertial1.setRotation(angle, degrees);
   Inertial2.setRotation(angle, degrees);
 }
 
@@ -1224,17 +1222,17 @@ void autonSkills()
   CorrectLock = true;
   ColorLock = true;
   AJEnable = false;
-  Inertial.setHeading(0, degrees);
+  setInertial(0);
 
   /**/
-  LBMotorL.spin(reverse);
+  LBMotors.spin(reverse);
   
   ConveyorMotor.spin(forward);
   IntakeMotor.spin(forward);
   wait(0.4, sec);
 
   Drive(340, 0.9);
-  LBMotorL.stop();
+  LBMotors.stop();
   AJEnable = true;
   Turn(90, 0.85);
   ConveyorMotor.stop();
@@ -1259,7 +1257,7 @@ void autonSkills()
 
   ////////////////////////////////  CORNER 1  ////////////////////////////////
   
-  LBMotorL.stop();
+  LBMotors.stop();
 
   Turn(190, 0.4);
   Drive(-280, 0.8);
@@ -1284,9 +1282,9 @@ void autonSkills()
   IntakeMotor.stop();
   
   Turn(270);
-  LBMotorL.spin(forward);
+  LBMotors.spin(forward);
   Drive(-1520, 1.3);                 // long clamp 2 drive
-  LBMotorL.spin(reverse);
+  LBMotors.spin(reverse);
   Turn(270, 0.2);
   Drive(-220, 0.7);
   Clamp.set(true);
@@ -1312,7 +1310,7 @@ void autonSkills()
 
   ////////////////////////////////  CORNER 2  ////////////////////////////////
   
-  LBMotorL.stop();
+  LBMotors.stop();
 
   Turn(360-190, 0.4);
   Drive(-280, 0.8);
@@ -1427,7 +1425,7 @@ void autonSkills()
   IntakeMotor.spin(forward);
 
   Drive(1130);
-  LBMotorL.spin(forward);
+  LBMotors.spin(forward);
   Turn(315);
   ConveyorMotor.stop(coast);
   IntakeMotor.stop();
@@ -1435,7 +1433,7 @@ void autonSkills()
   ////////////////////////////////  HANG  /////////////////////////////////
 
   Drive(-600, 1.4, 0.067);
-  LBMotorL.spin(reverse);
+  LBMotors.spin(reverse);
   Drive(400, 0.5, 0.058);
   //wait(0.1, sec);
   //Drive(400, 0.4, 0.07);

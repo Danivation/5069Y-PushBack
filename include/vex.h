@@ -39,7 +39,6 @@
 
 
 #include "CubicBezier.hpp"
-#include "Math/Pose.hpp"
 #include "Math/MathFunctions.hpp"
 
 #define waitUntil(condition)                                                   \
