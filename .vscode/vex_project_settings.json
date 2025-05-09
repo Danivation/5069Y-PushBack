@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "5069Y-PushBack",
+		"slot": 1,
+		"description": "5069Y code for 25-26 Push Back",
+		"platform": "V5",
+		"creationDate": "Fri, 9 May 2025 12:00:00 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20240802_15_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.6.1",
+		"json": 1
+	}
+}
