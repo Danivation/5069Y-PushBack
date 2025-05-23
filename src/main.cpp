@@ -237,7 +237,7 @@ int main()
   mCScreen.stop();
   Controller.Screen.clearScreen();
   wait(200, msec);
-  task mCScreen(CScreen);
+  task mCScreen2(CScreen);
 
   while (true)
   {

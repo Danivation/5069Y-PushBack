@@ -6,7 +6,7 @@ using code = vision::code;
 
 // VEXcode device constructors
 brain Brain;
-controller Controller  (primary);
+controller Controller   (primary);
 
 motor LA                (PORT11, ratio6_1, true);
 motor LB                (PORT12, ratio6_1, true);
