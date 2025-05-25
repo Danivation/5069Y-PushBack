@@ -27,7 +27,7 @@ extern const vex::controller::button LBDownButton       = Controller.ButtonL2;
 extern const vex::controller::button LBLoadButton       = Controller.ButtonB;
 extern const vex::controller::button LBAllianceButton   = Controller.ButtonA;
 
-extern const vex::controller::button LBDescore2Button  = Controller.ButtonX;
+extern const vex::controller::button LBDescore2Button   = Controller.ButtonX;
 
 int selectedAuton = 0;
 int autonMode = 101;
