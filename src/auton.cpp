@@ -11,6 +11,7 @@ void setInertial(float angle)
   Inertial2.setRotation(angle, degrees);
 }
 
+/**/
 timer stopTime;
 int stoptimer()
 {
@@ -1441,3 +1442,4 @@ void autonSkills()
 
   std::cout << "end at " << Brain.Timer.value() << "\n";
 }
+/

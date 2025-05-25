@@ -11,16 +11,3 @@ extern bool Bypass;
 
 int AutonSelect();
 int DrivetrainControl();
-int ConveyorControl();
-int ClampToggleControl();
-int DoinkerLControl();
-int DoinkerRControl();
-int LBReset();
-int LBControl();
-int LBLoadControl();
-int LBDescoreControl();
-int LBDescore2Control();
-
-int load();
-int descore();
-int descore2();
