@@ -15,14 +15,7 @@ int CScreen()
     Controller.Screen.setCursor(1, 1);
     Controller.Screen.print("I: %3.3f (%1.3f)", trueHeading(), toRadians(trueHeading()));
     Controller.Screen.setCursor(2, 1);
-    Controller.Screen.print("LB: %1.2f", LBRotation.position(turns));
-    /**
-    Controller.Screen.setCursor(1, 1);
-    //Controller.Screen.print("L: %.3f", (LA.velocity(rpm)+LB.velocity(rpm)+LB.velocity(rpm))/3);
-    Controller.Screen.print("L: %.3f", L.velocity(rpm));
-    Controller.Screen.setCursor(2, 1);
-    Controller.Screen.print("R: %.3f", R.velocity(rpm));
-    /**/
+    //Controller.Screen.print("LB: %1.2f", LBRotation.position(turns));
     Controller.Screen.setCursor(3, 1);
     Controller.Screen.print("B: %d%%", Brain.Battery.capacity(percent));
 
@@ -75,15 +68,15 @@ void driver()
   task dCScreen             (CScreen);
 
   task dDrivetrainControl   (DrivetrainControl);
-  task dConveyorControl     (ConveyorControl);
-  task dClampToggleControl  (ClampToggleControl);
-  task dLBReset             (LBReset);
-  task dLBControl           (LBControl);
-  task dLBLoadControl       (LBLoadControl);
-  task dLBDescoreControl    (LBDescore2Control);
-  task dLBDescore2Control   (LBDescoreControl);
-  task dDoinkerLControl     (DoinkerLControl);
-  task dDoinkerRControl     (DoinkerRControl);
+  //task dConveyorControl     (ConveyorControl);
+  //task dClampToggleControl  (ClampToggleControl);
+  //task dLBReset             (LBReset);
+  //task dLBControl           (LBControl);
+  //task dLBLoadControl       (LBLoadControl);
+  //task dLBDescoreControl    (LBDescore2Control);
+  //task dLBDescore2Control   (LBDescoreControl);
+  //task dDoinkerLControl     (DoinkerLControl);
+  //task dDoinkerRControl     (DoinkerRControl);
 }
 
 void auton()
@@ -94,7 +87,7 @@ void auton()
   std::cout << "AUTON ACTIVE \n";
 
   CorrectLock = true;
-  task aLBReset(LBReset);
+  //task aLBReset(LBReset);
   //task aBScreen(BScreen);
   task aCScreen(CScreen);
   task aColorSort(ColorSort);
@@ -115,6 +108,7 @@ void auton()
     // 10-12: red goal side
     default:
       autonNone();
+    /**
     case 202: // none
       //autonNone();
       break;
@@ -157,6 +151,7 @@ void auton()
     case 201: // skills
       autonSkills();
       break;
+    /**/
   }
   Brain.Screen.clearScreen();
   while (true)
@@ -177,27 +172,11 @@ int main()
   // setup things 
   L.setStopping(coast);
   R.setStopping(coast);
-  Clamp.set(false);
-  DoinkerL.set(false);
-  DoinkerR.set(false);
-  ConveyorMotor.setStopping(coast);
-  ConveyorMotor.setVelocity(600, rpm);
-  LBMotorL.setStopping(hold);
-  LBMotorL.setVelocity(200, rpm);
-  LBMotorR.setStopping(hold);
-  LBMotorR.setVelocity(200, rpm);
-  HTracker.resetPosition();
-  VTracker.resetPosition();
-  RingColor.setLightPower(100, percent);
-  RingColor.setLight(ledState::on);
-  RingColor.integrationTime(2);
-  RingColor.objectDetectThreshold(150);
-  FrontVision.modelDetection(true);
 
   // make sure nothing is unplugged
-  /**/
+  /**
   if ( !VTracker.installed()
-    || !ConveyorMotor.installed()
+    || !HTracker.installed()
     || !Inertial1.installed()
     || !Inertial2.installed()
     || !LA.installed()
@@ -206,11 +185,6 @@ int main()
     || !RA.installed()
     || !RB.installed()
     || !RC.installed()
-    || !LBMotorL.installed()
-    || !LBMotorR.installed()
-    || !LBRotation.installed()
-    || !RingColor.installed()
-    || !RingDistance.installed()
   ) {Brain.programStop();}
   /**/
   
