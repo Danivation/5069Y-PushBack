@@ -23,6 +23,8 @@ rotation VTracker       (PORT2, false);    // CORRECT
 inertial Inertial1      (PORT3);
 inertial Inertial2      (PORT4);
 
+motor ConveyorMotor     (PORT5, ratio6_1, false);
+
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

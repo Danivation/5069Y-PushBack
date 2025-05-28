@@ -20,6 +20,8 @@ extern motor RC;
 extern motor_group L;
 extern motor_group R;
 
+extern motor ConveyorMotor;
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

@@ -62,7 +62,6 @@ void driver()
   R.setStopping(coast);
   ColorLock = true;
   CorrectLock = true;
-  AJEnable = false;
 
   //task dBScreen             (BScreen);
   task dCScreen             (CScreen);
@@ -87,25 +86,12 @@ void auton()
   std::cout << "AUTON ACTIVE \n";
 
   CorrectLock = true;
-  //task aLBReset(LBReset);
-  //task aBScreen(BScreen);
   task aCScreen(CScreen);
-  task aColorSort(ColorSort);
-  task aAntiJam(jamdetect);
+  //task aColorSort(ColorSort);
 
   //wait(1.5, sec);
   switch (selectedAuton + autonMode)
   {
-    // 1, 4, 7, 10: basic win points
-    // 2, 8: swoop swp
-    // 5, 11: none
-    // 3, 9: swoop elims
-    // 6, 12: rush elims
-
-    // 1-3: blue ring side
-    // 4-6: blue goal side
-    // 7-9: red ring side
-    // 10-12: red goal side
     default:
       autonNone();
     /**

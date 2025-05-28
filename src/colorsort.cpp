@@ -12,6 +12,7 @@ bool ColorLock = false;
  * after a certain number, flip if bad
 **/
 
+/**
 // a pointer, containing a const vex::color, called SortClr, is pointing to the address of vex::transparent
 const vex::color* SortColor = &transparent;
 int ccount = 0;   // wrong color counter
@@ -113,15 +114,13 @@ int RingFlip()
   waitUntil(ConveyorMotor.position(turns) >= StartPosition + 0.5);
   if (fabs(ConveyorMotor.velocity(rpm)) > 50 && ColorLock == false)
   {
-    AJBuffer = AJEnable;          // stores the current state of antijam to revert back to it later
-    AJEnable = false;     // turns off antijam so it doesnt interfere
     //ConveyorMotor.stop(hold);
     ConveyorMotor.spin(reverse, ToVolt(100), volt);
     std::cout << "flipping ring with strength " << strcounter << "\n";
     wait(100, msec);
     ConveyorMotor.spin(forward, ToVolt(100), volt);
-    AJEnable = AJBuffer;
     Flipping = false;
   }
   return 1;
 }
+/**/
