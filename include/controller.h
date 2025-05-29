@@ -11,3 +11,5 @@ extern bool Bypass;
 
 int AutonSelect();
 int DrivetrainControl();
+int IntakeControl();
+int LiftControl();

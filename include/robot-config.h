@@ -20,7 +20,12 @@ extern motor RC;
 extern motor_group L;
 extern motor_group R;
 
-extern motor ConveyorMotor;
+extern motor IntakeL;
+extern motor IntakeR;
+extern motor_group Intake;
+extern motor Conveyor;
+
+extern digital_out Lift;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

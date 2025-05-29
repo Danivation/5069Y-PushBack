@@ -18,16 +18,8 @@ extern const vex::controller::axis   TurnAxis           = Controller.Axis1;
 extern const vex::controller::button IntakeInButton     = Controller.ButtonR1;
 extern const vex::controller::button IntakeOutButton    = Controller.ButtonR2;
 
-extern const vex::controller::button ClampToggle        = Controller.ButtonDown;
-extern const vex::controller::button DoinkerLToggle     = Controller.ButtonRight;
-extern const vex::controller::button DoinkerRToggle     = Controller.ButtonY;
+extern const vex::controller::button LiftToggle         = Controller.ButtonDown;
 
-extern const vex::controller::button LBUpButton         = Controller.ButtonL1;
-extern const vex::controller::button LBDownButton       = Controller.ButtonL2;
-extern const vex::controller::button LBLoadButton       = Controller.ButtonB;
-extern const vex::controller::button LBAllianceButton   = Controller.ButtonA;
-
-extern const vex::controller::button LBDescore2Button   = Controller.ButtonX;
 
 int selectedAuton = 0;
 int autonMode = 101;
@@ -286,25 +278,45 @@ int DrivetrainControl()
 
 
 
-/**
-int ConveyorControl()
+/**/
+int IntakeControl()
 {
   while (true)
   {
     if (IntakeInButton.pressing())
     {
-      ConveyorMotor.spin(forward, ToVolt(100), volt);
+      Conveyor.spin(forward, 12, volt);
+      Intake.spin(forward, 12, volt);
       waitUntil(!IntakeInButton.pressing());
-      ConveyorMotor.stop();
+      Conveyor.stop();
+      Intake.stop();
     }
     if (IntakeOutButton.pressing())
     {
-      ConveyorMotor.spin(reverse, ToVolt(100), volt);
+      Conveyor.spin(reverse, 12, volt);
+      Intake.spin(reverse, 12, volt);
       waitUntil(!IntakeOutButton.pressing());
-      ConveyorMotor.stop();
+      Conveyor.stop();
+      Intake.stop();
     }
   }
 }
+
+
+int LiftControl()
+{
+  bool LiftState = !Lift.value();
+  while (true)
+  {
+    Lift.set(!LiftState);
+    waitUntil(!LiftToggle.pressing());
+    waitUntil(LiftToggle.pressing());
+    LiftState = Lift.value();
+  }
+}
+
+
+/**
 
 int ClampToggleControl()
 {

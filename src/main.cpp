@@ -63,19 +63,11 @@ void driver()
   ColorLock = true;
   CorrectLock = true;
 
-  //task dBScreen             (BScreen);
   task dCScreen             (CScreen);
 
   task dDrivetrainControl   (DrivetrainControl);
-  //task dConveyorControl     (ConveyorControl);
-  //task dClampToggleControl  (ClampToggleControl);
-  //task dLBReset             (LBReset);
-  //task dLBControl           (LBControl);
-  //task dLBLoadControl       (LBLoadControl);
-  //task dLBDescoreControl    (LBDescore2Control);
-  //task dLBDescore2Control   (LBDescoreControl);
-  //task dDoinkerLControl     (DoinkerLControl);
-  //task dDoinkerRControl     (DoinkerRControl);
+  task dIntakeControl       (IntakeControl);
+  task dLiftControl         (LiftControl);
 }
 
 void auton()
@@ -158,6 +150,11 @@ int main()
   // setup things 
   L.setStopping(coast);
   R.setStopping(coast);
+  Lift.set(false);
+  Conveyor.setStopping(hold);
+  Conveyor.setVelocity(600, rpm);
+  Intake.setStopping(hold);
+  Intake.setVelocity(200, rpm);
 
   // make sure nothing is unplugged
   /**
