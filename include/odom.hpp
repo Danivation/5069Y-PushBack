@@ -2,13 +2,25 @@
 
 #include "vex.h"
 
-float toDegrees(float angle);
-float toRadians(float angle);
-float reduce_radians(float angle);
-float reduce_0_to_360(float angle);
-float trueHeading();
 
-extern vex::task odometry;
+//extern vex::task odometry;
+
+
+class odometry
+{
+private:
+  bool odomEnabled = true;
+public:
+  VecPose currentPose = {0, 0, 0};
+  
+  odometry();
+  void startTracking(float x, float y, float theta);
+  void stopTracking();
+  void setPose(float x, float y, float theta);
+  VecPose getPose();
+};
+extern odometry Odometry;
+
 
 class odom {
 private:
@@ -46,5 +58,4 @@ public:
   void update_position(float ForwardTracker_position, float SidewaysTracker_position, float orientation_deg);
 
 };
-
 extern odom Odom;

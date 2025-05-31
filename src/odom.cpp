@@ -1,38 +1,52 @@
 #include "vex.h"
 using namespace vex;
 
-float globalX = 0;
-float globalY = 0;
-
 const float TrackerWheelDiameter = 2; // inches
 
-float toRadians(float angle) {
-  return angle * (M_PI / 180);
+// empty class declaration (or definition idk)
+odometry::odometry() {}
+
+
+// sets the global pose
+// x and y in inches, theta in radians
+void odometry::setPose(float x, float y, float theta)
+{
+  currentPose = {x, y, theta};
 }
 
-float toDegrees(float angle) {
-  return angle * (180 / M_PI);
+// returns the current pose
+VecPose odometry::getPose()
+{
+  return currentPose;
 }
 
-float reduce_0_to_360(float angle) {
-  while (angle < 0) angle += 360;
-  while (angle >= 360) angle -= 360;
-  return angle;
+// starts the tracking task
+// x and y in inches, theta in absolute degrees
+void odometry::startTracking(float x, float y, float theta)
+{
+  odomEnabled = true;
+  // set current global pose to the starting pose
+  currentPose = {x, y, toRadians(theta)};
 }
 
-float reduce_radians(float angle) {
-  while (angle < 0) angle += 2 * M_PI;
-  while (angle >= 2 * M_PI) angle -= 2 * M_PI;
-  return angle;
+// stops the tracking task
+void odometry::stopTracking()
+{
+  odomEnabled = false;
 }
 
-float trueHeading() {
-  return reduce_0_to_360((Inertial1.rotation() + Inertial2.rotation()) / 2);
-}
 
-float trueRotation() {
-  return ((Inertial1.rotation() + Inertial2.rotation()) / 2);
-}
+
+
+
+
+
+
+
+
+
+
+
 
 odom::odom() {}
 
@@ -57,20 +71,10 @@ float odom::getChangeInRotation(float &previousRotation) {
   return delta;
 }
 
-template <class F>
-vex::task launch_task(F&& function) {
-  //static_assert(std::is_invocable_r_v<void, F>);
-  return vex::task([](void* parameters) {
-    std::unique_ptr<std::function<void()>> ptr{static_cast<std::function<void()>*>(parameters)};
-    (*ptr)();
-    return 0;
-  }, new std::function<void()>(std::forward<F>(function)));
-}
-
-vex::task odometry;
+vex::task odomTask;
 void odom::startOdom(float startX, float startY, float startHeading)
 {
-  odometry = launch_task(std::bind(&odom::runOdom, &Odom, startX, startY, startHeading));
+  odomTask = vex::launch_task(std::bind(&odom::runOdom, &Odom, startX, startY, startHeading));
 }
 
 void odom::setPose(float x, float y, float heading) {
@@ -401,19 +405,3 @@ void Odometry::setRDistInput(double i){
 //task odom.trackposition;
 
 /**/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
