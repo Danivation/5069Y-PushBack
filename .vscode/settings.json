@@ -50,8 +50,8 @@
 		"valarray": "cpp",
 		"random": "cpp"
 	},
-  	"workbench.colorCustomizations": {
-    	"titleBar.activeBackground": "#000000",
+	"workbench.colorCustomizations": {
+		"titleBar.activeBackground": "#000000",
 		"editor.background": "#000000",
 		"activityBarTop.background": "#000000",
 		"sideBar.background": "#000000",
@@ -64,38 +64,8 @@
 		"tab.inactiveBackground": "#000000",
 		"statusBar.background": "#000000",
 		"statusBarItem.remoteBackground": "#000000",
-		"statusBarItem.warningBackground": "#4f4200"
-  	},
-	
-	/**
-	"editor.semanticTokenColorCustomizations": {
-		"enabled": true,
-		"rules": {
-			"curlybrace": {"foreground": "#ff0000"}
-		}
-	},
-	/**
-	"editor.semanticHighlighting.enabled": false,
-	/**
-	"editor.tokenColorCustomizations": {
-		/**
-		"comments": "#009534",
-		"keywords": "#ffd900",
-		"strings": "#e600ff",
-		"numbers": "#004402",
-		"variables": "#ff6f00",
-		
-		"types": "#4c00ff",
-		"functions": "#d6caca",
-		/**
-		"textMateRules": [
-			{
-				"scope": "punctuation.section.block.begin.bracket.curly.cpp",
-				"settings": {
-					"foreground": "#0026ff"
-				}
-			}
-		]
-    }
-	/**/
+		"statusBarItem.warningBackground": "#4f4200",
+		"terminal.background": "#000000",
+
+	}
 }

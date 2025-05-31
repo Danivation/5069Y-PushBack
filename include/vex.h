@@ -28,11 +28,11 @@
 
 #include "robot-config.h"
 
-#include "controller.h"
-#include "pid.h"
-#include "extras.h"
-#include "colorsort.h"
-#include "auton.h"
+#include "controller.hpp"
+#include "pid.hpp"
+#include "extras.hpp"
+#include "colorsort.hpp"
+#include "auton.hpp"
 #include "odom.hpp"
 #include "ramsete.hpp"
 #include "pypaths.hpp"
