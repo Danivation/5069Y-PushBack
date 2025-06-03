@@ -49,5 +49,5 @@
 		"iomanip": "cpp",
 		"valarray": "cpp",
 		"random": "cpp"
-	},
+	}
 }
