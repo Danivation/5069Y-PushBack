@@ -1,7 +1,7 @@
 #include "vex.h"
 
 using namespace vex;
-extern odom Odom;
+//extern odom Odom;
 
 void setInertial(float angle)
 {
