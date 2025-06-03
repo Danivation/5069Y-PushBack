@@ -2,22 +2,20 @@
 
 using namespace vex;
 competition Competition;
-odom Odom;
 std::string selectedAutonName = "";
 
 int CScreen()
 {
   while (true)
   {
-    Controller.Screen.clearScreen();
+    //Controller.Screen.clearScreen();
 
-    /**/
     Controller.Screen.setCursor(1, 1);
-    Controller.Screen.print("I: %3.3f (%1.3f)", trueHeading(), toRadians(trueHeading()));
+    Controller.Screen.print("I: %3.3f (%1.3f)            ", trueHeading(), toRadians(trueHeading()));
     Controller.Screen.setCursor(2, 1);
-    //Controller.Screen.print("LB: %1.2f", LBRotation.position(turns));
+    //Controller.Screen.print("LB: %1.2f            ", LBRotation.position(turns));
     Controller.Screen.setCursor(3, 1);
-    Controller.Screen.print("B: %d%%", Brain.Battery.capacity(percent));
+    Controller.Screen.print("B: %d%%            ", Brain.Battery.capacity(percent));
 
     wait(50, msec);
   }
@@ -28,20 +26,7 @@ int BScreen()
   //Brain.Screen.clearScreen();
   while (true)
   {
-    //Brain.Screen.printAt(0, 60, true, "true vertical: %.2f", VTracker.position(degrees) * (M_PI * 2) / 360);
-    //Brain.Screen.printAt(0, 80, true, "prev v: %f", VPrevious);
-
-    Odom.currentOdomPose.x = Odom.X_position;
-    Odom.currentOdomPose.y = Odom.Y_position;
-    //Brain.Screen.printAt(0, 100, true, "global x: %.2f", Odom.X_position);
-    //Brain.Screen.printAt(0, 120, true, "global y: %.2f", Odom.Y_position);
-    //Brain.Screen.printAt(0, 140, true, "global theta: %.2f", trueHeading());
-
-
-    //Brain.Screen.printAt(0, 180, true, "L: %.3f", (LA.velocity(rpm)+LB.velocity(rpm)+LB.velocity(rpm))/3);
-    //Brain.Screen.printAt(0, 200, true, "R: %.3f", (RA.velocity(rpm)+RB.velocity(rpm)+RB.velocity(rpm))/3);
-
-
+    // print things
     wait(50, msec);
   }
 }

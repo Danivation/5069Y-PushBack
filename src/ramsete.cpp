@@ -104,13 +104,13 @@ void ramsete::followChainPath(CubicBezier path, VecPose &currentPose, VelocityPo
   while (chainTimer.value() <= timeout)
   {
     std::cout << "\n";
-    closestT = path.findClosestT(Odom.currentOdomPose);
+    closestT = path.findClosestT(Odometry.currentPose);
     wait(5, msec);
     std::cout << closestT << " t \n";
     closestPoint = path.getPoint(closestT);
     thetaHeading = atan2f(path.getDerivative(closestT + lookahead).x, path.getDerivative(closestT + lookahead).y);
     target = {closestPoint.x, closestPoint.y, reduce_radians((reversed ? static_cast<float>(M_PI) : 0) + thetaHeading)};        // units, specifically for heading
-    current = Odom.currentOdomPose;
+    current = Odometry.currentPose;
     current.theta = toRadians(trueHeading());
 
     //vex::task findVelocities = launch_task(std::bind(fillDistanceTable, target, current, velocities));

@@ -1,7 +1,7 @@
 #include "vex.h"
 
 using namespace vex;
-extern odom Odom;
+extern odometry Odometry;
 
 void setInertial(float angle, vex::rotationUnits units)
 {

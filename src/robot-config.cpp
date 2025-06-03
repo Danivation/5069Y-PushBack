@@ -23,8 +23,9 @@ rotation VTracker     (PORT2, false);
 inertial Inertial1    (PORT3);
 inertial Inertial2    (PORT4);
 
-odometry::tracker c_horizontal (&HTracker, 0, 2.75);
-odometry::tracker c_vertical   (&VTracker, 0, 2.75);
+odometry::tracker c_horizontal  (&HTracker, 0, 2.75);
+odometry::tracker c_vertical    (&VTracker, 0, 2.75);
+odometry Odometry               (&c_horizontal, &c_vertical);
 
 
 motor IntakeL         (PORT5, ratio18_1, false);
