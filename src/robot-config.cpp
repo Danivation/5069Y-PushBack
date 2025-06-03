@@ -18,10 +18,14 @@ motor RC              (PORT16, ratio6_1, false);
 motor_group L         (LA, LB, LC);
 motor_group R         (RA, RB, RC);
 
-rotation HTracker     (PORT1, false);    // CORRECT
-rotation VTracker     (PORT2, false);    // CORRECT
+rotation HTracker     (PORT1, false);
+rotation VTracker     (PORT2, false);
 inertial Inertial1    (PORT3);
 inertial Inertial2    (PORT4);
+
+odometry::tracker c_horizontal (&HTracker, 0, 2.75);
+odometry::tracker c_vertical   (&VTracker, 0, 2.75);
+
 
 motor IntakeL         (PORT5, ratio18_1, false);
 motor IntakeR         (PORT6, ratio18_1, true);

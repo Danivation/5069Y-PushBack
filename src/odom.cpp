@@ -3,8 +3,27 @@ using namespace vex;
 
 const float TrackerWheelDiameter = 2; // inches
 
-// empty class declaration (or definition idk)
-odometry::odometry() {}
+// odometry class constructor
+odometry::odometry(odometry::tracker *t_horizontal, odometry::tracker *t_vertical)
+{
+  pt_horizontal = t_horizontal;
+  pt_vertical = t_vertical;
+}
+
+// tracker class constructor
+odometry::tracker::tracker(vex::rotation *sensor, float offset, float wheelSize)
+{
+  p_sensor = sensor;
+  p_offset = offset;
+  p_wheelSize = wheelSize;
+}
+
+// returns tracker position in inches (or whatever unit was used for the wheel size)
+float odometry::tracker::getPosition()
+{
+  return (p_wheelSize * M_PI / 360) * p_sensor->position(degrees);
+}
+
 
 
 // sets the global pose
@@ -26,7 +45,16 @@ void odometry::startTracking(float x, float y, float theta)
 {
   odomEnabled = true;
   // set current global pose to the starting pose
+  setInertial(theta, degrees);
   currentPose = {x, y, toRadians(theta)};
+
+  float prevVertical;
+  while (odomEnabled)
+  {
+    // tracking stuff here
+
+
+  }
 }
 
 // stops the tracking task

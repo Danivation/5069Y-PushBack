@@ -2,7 +2,7 @@
 
 
 
-void setInertial(float angle);
+void setInertial(float angle, vex::rotationUnits units = degrees);
 // Auton functions
 
 

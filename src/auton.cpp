@@ -3,12 +3,12 @@
 using namespace vex;
 extern odom Odom;
 
-void setInertial(float angle)
+void setInertial(float angle, vex::rotationUnits units)
 {
-  Inertial1.setHeading(angle, degrees);
-  Inertial2.setHeading(angle, degrees);
-  Inertial1.setRotation(angle, degrees);
-  Inertial2.setRotation(angle, degrees);
+  Inertial1.setHeading(angle, units);
+  Inertial2.setHeading(angle, units);
+  Inertial1.setRotation(angle, units);
+  Inertial2.setRotation(angle, units);
 }
 
 // Auton functions
