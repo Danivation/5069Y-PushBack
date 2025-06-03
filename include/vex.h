@@ -31,13 +31,15 @@
 #include "controller.hpp"
 #include "pid.hpp"
 #include "extras.hpp"
-//#include "colorsort.hpp"
+#include "colorsort.hpp"
 #include "auton.hpp"
-//#include "odom.hpp"
-//#include "ramsete.hpp"
-//#include "pypaths.hpp"
-//#include "CubicBezier.hpp"
-//#include "Math/MathFunctions.hpp"
+#include "odom.hpp"
+#include "ramsete.hpp"
+#include "pypaths.hpp"
+
+
+#include "CubicBezier.hpp"
+#include "Math/MathFunctions.hpp"
 
 #define waitUntil(condition)                                                   \
   do {                                                                         \

@@ -2,7 +2,7 @@
 
 using namespace vex;
 competition Competition;
-//odom Odom;
+odom Odom;
 std::string selectedAutonName = "";
 
 int CScreen()
@@ -31,8 +31,8 @@ int BScreen()
     //Brain.Screen.printAt(0, 60, true, "true vertical: %.2f", VTracker.position(degrees) * (M_PI * 2) / 360);
     //Brain.Screen.printAt(0, 80, true, "prev v: %f", VPrevious);
 
-    //Odom.currentOdomPose.x = Odom.X_position;
-    //Odom.currentOdomPose.y = Odom.Y_position;
+    Odom.currentOdomPose.x = Odom.X_position;
+    Odom.currentOdomPose.y = Odom.Y_position;
     //Brain.Screen.printAt(0, 100, true, "global x: %.2f", Odom.X_position);
     //Brain.Screen.printAt(0, 120, true, "global y: %.2f", Odom.Y_position);
     //Brain.Screen.printAt(0, 140, true, "global theta: %.2f", trueHeading());
@@ -60,8 +60,8 @@ void driver()
   R.stop(coast);
   L.setStopping(coast);
   R.setStopping(coast);
-  //ColorLock = true;
-  //CorrectLock = true;
+  ColorLock = true;
+  CorrectLock = true;
 
   task dCScreen             (CScreen);
 
