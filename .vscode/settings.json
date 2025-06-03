@@ -50,22 +50,4 @@
 		"valarray": "cpp",
 		"random": "cpp"
 	},
-	"workbench.colorCustomizations": {
-		"titleBar.activeBackground": "#000000",
-		"editor.background": "#000000",
-		"activityBarTop.background": "#000000",
-		"sideBar.background": "#000000",
-		"sideBarSectionHeader.background": "#000000",
-		"list.hoverBackground": "#181818",
-		"list.activeSelectionBackground": "#002c4a",
-		"list.inactiveSelectionBackground": "#181818",
-		"editorGroupHeader.tabsBackground": "#000000",
-		"tab.activeBackground": "#131313",
-		"tab.inactiveBackground": "#000000",
-		"statusBar.background": "#000000",
-		"statusBarItem.remoteBackground": "#000000",
-		"statusBarItem.warningBackground": "#4f4200",
-		"terminal.background": "#000000",
-
-	}
 }
