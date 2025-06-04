@@ -71,50 +71,6 @@ void auton()
   {
     default:
       autonNone();
-    /**
-    case 202: // none
-      //autonNone();
-      break;
-    case 1: // blue ring basic win point
-      autonBlueRingBasicWP();
-      break;
-    case 2: // blue ring swoop swp
-      autonBlueRingSwoopSWP();
-      break;
-    case 3: // blue ring swoop elims
-      autonBlueRingSwoopElims();
-      break;
-    case 4: // blue goal basic win point
-      autonBlueGoalBasicWP();
-      break;
-    case 5: // blue goal (RING SIDE swoop corner wp)
-      autonBlueRingSwoopCornerWP();
-      break;
-    case 6: // blue goal rush elims
-      autonBlueGoalRushElims();
-      break;
-    case 7: // red ring basic win point
-      autonRedRingBasicWP();
-      break;
-    case 8: // red ring swoop swp
-      autonRedRingSwoopSWP();
-      break;
-    case 9: // red ring swoop elims
-      autonRedRingSwoopElims();
-      break;
-    case 10: // red goal basic win point
-      autonRedGoalBasicWP();
-      break;
-    case 11: // red goal (RING SIDE swoop corner wp)
-      autonRedRingSwoopCornerWP();
-      break;
-    case 12: // red goal rush elims
-      autonRedGoalRushElims();
-      break;
-    case 201: // skills
-      autonSkills();
-      break;
-    /**/
   }
   Brain.Screen.clearScreen();
   while (true)

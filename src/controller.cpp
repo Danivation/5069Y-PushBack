@@ -1,16 +1,6 @@
 #include "vex.h"
 using namespace vex;
 
-// lower number for higher load position
-// higher number for lower load position
-const float LoadPosition = 1.32;
-const float DescorePosition = 2.37;     // descore really (A button)
-const float Descore2Position = 2.44;   // alliance stake (X button)
-
-float LoadKP = 150;
-float IntStart = 0.1;
-float LoadKI = 0;
-
 // Controller bindings
 extern const vex::controller::axis   ForwardAxis        = Controller.Axis3;
 extern const vex::controller::axis   TurnAxis           = Controller.Axis1;
@@ -162,7 +152,6 @@ int AutonSelect()
   }
 
 
-  int cw = 150;
   Brain.Screen.setFillColor(black);
   Brain.Screen.drawRectangle(240-200/2, 200, 200, 35);    // confirm
   Brain.Screen.printAt(240-(Brain.Screen.getStringWidth("Confirm & Calibrate")/2), 220+(Brain.Screen.getStringHeight("Confirm & Calibrate")/4), "Confirm & Calibrate");
