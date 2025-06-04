@@ -29,6 +29,3 @@ private:
     odometry::tracker *pt_vertical;
 };
 extern odometry Odometry;
-
-
-

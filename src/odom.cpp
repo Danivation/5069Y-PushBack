@@ -1,8 +1,6 @@
 #include "vex.h"
 using namespace vex;
 
-const float TrackerWheelDiameter = 2; // inches
-
 // odometry class constructor
 odometry::odometry(odometry::tracker *t_horizontal, odometry::tracker *t_vertical)
 {
