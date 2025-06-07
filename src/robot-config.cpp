@@ -35,6 +35,8 @@ motor Conveyor        (PORT7, ratio6_1, false);
 
 digital_out Lift      (Brain.ThreeWirePort.A);
 
+optical BlockColor    (PORT8);
+
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;

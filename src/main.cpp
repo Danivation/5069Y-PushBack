@@ -96,6 +96,7 @@ int main()
   Conveyor.setVelocity(600, rpm);
   Intake.setStopping(hold);
   Intake.setVelocity(200, rpm);
+  BlockColor.integrationTime(2);
 
   // make sure nothing is unplugged
   /**
@@ -124,11 +125,9 @@ int main()
   Inertial1.calibrate();
   Inertial2.calibrate();
   wait(3, sec);
-  
   setInertial(0);
   Controller.rumble(rumbleShort);
   std::cout << "CALIBRATE DONE \n";
-
 
   // wait until control is plugged in or bypass is enabled
   waitUntil(((Competition.isFieldControl() || Competition.isCompetitionSwitch()) && !Competition.isEnabled()) || Bypass || (Controller.ButtonY.pressing() && Controller.ButtonRight.pressing()));

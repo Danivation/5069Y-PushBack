@@ -3,17 +3,65 @@ using namespace vex;
 
 bool ColorLock = false;
 
+
 /*
- * COLOR SORT
- * ring passes by color sensor, if it detects a "near" object for a long time (cant be a hook)
- * of a red or blue color for a majority of the time,
- * then activate distance, start getting results
- * as soon as the next thing gets within 50 mm, start tracking conveyor rotations
- * after a certain number, flip if bad
+ * PUSH BACK COLOR SORT
+ * block will pass by color sensor
+ * when it does activate trapdoor after a certain amt of time and for a certain duration (no need for distance sensor, use color sensor's distance)
 **/
 
+
+const vex::color* SortColor = &transparent;
+int ccount = 0;   // wrong color counter
+int ColorSort()
+{
+  BlockColor.integrationTime(2);
+  int tcount = 0;   // detection threshold counter
+  //int rcount = 0;   // total block counter
+  int ncount = 0;   // no block counter
+  
+  while (true)
+  {
+    if (BlockColor.isNearObject())
+    {
+      tcount += 1;
+
+      if (BlockColor.color() == *SortColor)
+      {
+        ccount += 1;
+      }
+      
+      if (tcount >= 9)    // if its been near an object for more than 9 cycles
+      {
+        std::cout << "block detected (color) with strength " << ccount << " after " << ncount << "\n";
+        ncount = 0;
+        tcount = 0;
+        task release1(BlockRelease);
+        // REPLACE THIS with something that says when the block has passed, maybe a redundant check for a new color for more than a few cycles
+        //waitUntil(!BlockColor.isNearObject());
+        ccount = 0;
+      }
+      wait(3, msec);
+    }
+    else
+    {
+      tcount = 0;
+      ncount += 1;
+      wait(1, msec);
+      ccount = 0;
+    }
+  }
+}
+
+int BlockRelease()
+{
+  wait(200, msec);
+  //Trapdoor.set(false);
+  return 1;
+}
+
 /**
-// a pointer, containing a const vex::color, called SortClr, is pointing to the address of vex::transparent
+// a pointer, containing a const vex::color, called SortColor, is pointing to the address of vex::transparent
 const vex::color* SortColor = &transparent;
 int ccount = 0;   // wrong color counter
 
@@ -57,51 +105,6 @@ int ColorSort()
       ncount += 1;
       wait(1, msec);
       ccount = 0;
-    }
-  }
-}
-
-float StartPosition = 0;
-int strengthcounter = 0;
-int DistanceCheck()
-{
-  strengthcounter = ccount;
-  int tcount = 0;   // detection threshold counter
-  //int rcount = 0;   // total ring counter
-  int ncount = 0;   // no ring counter
-  while (true)
-  {
-    if (RingDistance.objectDistance(mm) <= 45)
-    {
-      StartPosition = ConveyorMotor.position(turns);
-      tcount += 1;
-      //std::cout << "g \n";
-      
-      if (ncount >= 30)     // if its near smth for more than 3 cycles, and before that there was nothing for more than 30 cycles
-      {
-        std::cout << "ring detected (distance) after " << ncount << " with strength " << strengthcounter << "\n";
-        ncount = 0;
-        tcount = 0;
-        if (strengthcounter >= 2)       // if its a 2 or over, flip it, if its a 0-1, dont
-        {
-          task rf1(RingFlip);
-        }
-        else
-        {
-          std::cout << "not flipping ring with strength " << strengthcounter << "\n";
-          Flipping = false;
-        }
-        return 1;
-        waitUntil(!(RingDistance.objectDistance(mm) <= 45));
-      }
-      wait(6, msec);
-    }
-    else
-    {
-      tcount = 0;
-      ncount += 1;
-      //std::cout << ncount << " nothing \n";
-      wait(2, msec);
     }
   }
 }

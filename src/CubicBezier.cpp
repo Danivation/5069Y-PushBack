@@ -16,28 +16,28 @@ float CubicBezier::getYPoint(float t)
 float epsilon = 0.0000001;
 float CubicBezier::estXDerivative(float t)
 {
-  float deltaX = this->getXPoint(t+epsilon) - this->getXPoint(t);
+  //float deltaX = this->getXPoint(t+epsilon) - this->getXPoint(t);
   //return deltaX/epsilon;
   return this->getDerivative(t).x;
 }
 
 float CubicBezier::estYDerivative(float t)
 {
-  float deltaY = this->getYPoint(t+epsilon) - this->getYPoint(t);
+  //float deltaY = this->getYPoint(t+epsilon) - this->getYPoint(t);
   //return deltaY/epsilon;
   return this->getDerivative(t).y;
 }
 
 float CubicBezier::estXSecondDerivative(float t)
 {
-  float delta2X = this->estXDerivative(t+epsilon) - this->estXDerivative(t);
+  //float delta2X = this->estXDerivative(t+epsilon) - this->estXDerivative(t);
   //return delta2X/epsilon;
   return this->getSecondDerivative(t).x;
 }
 
 float CubicBezier::estYSecondDerivative(float t)
 {
-  float delta2Y = this->estYDerivative(t+epsilon) - this->estYDerivative(t);
+  //float delta2Y = this->estYDerivative(t+epsilon) - this->estYDerivative(t);
   //return delta2Y/epsilon;
   return this->getSecondDerivative(t).y;
 }
