@@ -50,16 +50,6 @@ void fillDistanceTable(VecPose target, VecPose current, VelocityPointList chainV
   minIndex = std::distance(distanceTable.begin(), std::find(distanceTable.begin(), distanceTable.end(), *std::min_element(distanceTable.begin(), distanceTable.end())));
 }
 
-template <class T>
-vex::task launch_task(T&& function) {
-  //static_assert(std::is_invocable_r_v<void, T>);
-  return vex::task([](void* parameters) {
-    std::unique_ptr<std::function<void()>> ptr{static_cast<std::function<void()>*>(parameters)};
-    (*ptr)();
-    return 0;
-  }, new std::function<void()>(std::forward<T>(function)));
-}
-
 
 VoltagePair ramsete::convertWheelSpeeds(VelocityPair input, float wheel_diameter_in, float wheelbase_width_in, float max_rpm)
 {

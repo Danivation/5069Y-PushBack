@@ -238,16 +238,6 @@ int AutonSelect()
   return 1;
 }
 
-template <class F>
-vex::task launch_task(F&& function) {
-  //static_assert(std::is_invocable_r_v<void, F>);
-  return vex::task([](void* parameters) {
-    std::unique_ptr<std::function<void()>> ptr{static_cast<std::function<void()>*>(parameters)};
-    (*ptr)();
-    return 0;
-  }, new std::function<void()>(std::forward<F>(function)));
-}
-
 int DrivetrainControl()
 {
   float throttle;

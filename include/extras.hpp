@@ -13,13 +13,10 @@ float reduce_0_to_360(float angle);
 float trueHeading();
 float trueRotation();
 
-template <class T>
-vex::task launch_task(T&& function);
 
 // vex::clamp and vex::launch_task
 namespace vex
 {
-    
     template <class F>
     vex::task launch_task(F&& function) {
         //static_assert(std::is_invocable_r_v<void, F>);

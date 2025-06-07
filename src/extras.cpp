@@ -26,7 +26,6 @@ float ToMM(float degrees)
   return (degrees / TrackerRatio);  // drivetrain gear ratio
 }
 
-
 float toRadians(float angle)
 {
   // degrees to radians
