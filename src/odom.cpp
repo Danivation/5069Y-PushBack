@@ -81,8 +81,8 @@ void odometry::startTracking(float x, float y, float theta)
     else
     {
       // i cant tell if the sinf is supposed to be on toRadians(trueHeading()) or on deltaTheta/2
-      localX = 2 * sinf(toRadians(trueHeading())) * ((deltaHorizontal / deltaTheta) + pt_horizontal->getOffset());
-      localY = 2 * sinf(toRadians(trueHeading())) * ((deltaVertical / deltaTheta) + pt_vertical->getOffset());
+      localX = 2 * sinf(deltaTheta/2) * ((deltaHorizontal / deltaTheta) + pt_horizontal->getOffset());
+      localY = 2 * sinf(deltaTheta/2) * ((deltaVertical / deltaTheta) + pt_vertical->getOffset());
     }
 
     // magic polar coordinate conversion
@@ -108,6 +108,7 @@ void odometry::startTracking(float x, float y, float theta)
     float deltaY = polarRadius * sinf(globalPolarAngle);
     currentPose.x += deltaX;
     currentPose.y += deltaY;
+    currentPose.theta = trueHeading();
 
     // update previous values
     prevVertical = pt_vertical->getPosition();

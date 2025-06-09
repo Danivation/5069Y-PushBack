@@ -8,34 +8,34 @@ using code = vision::code;
 brain Brain;
 controller Controller (primary);
 
-motor LA              (PORT11, ratio6_1, true);
-motor LB              (PORT12, ratio6_1, true);
-motor LC              (PORT13, ratio6_1, true);
-motor RA              (PORT14, ratio6_1, false);
-motor RB              (PORT15, ratio6_1, false);
-motor RC              (PORT16, ratio6_1, false);
+motor LA              (PORT7, ratio6_1, true );
+motor LB              (PORT9, ratio6_1, false);
+motor LC              (PORT8, ratio6_1, true );
+motor RA              (PORT1, ratio6_1, false);
+motor RB              (PORT2, ratio6_1, true );
+motor RC              (PORT3, ratio6_1, false);
 
 motor_group L         (LA, LB, LC);
 motor_group R         (RA, RB, RC);
 
-rotation HTracker     (PORT1, false);
-rotation VTracker     (PORT2, false);
-inertial Inertial1    (PORT3);
-inertial Inertial2    (PORT4);
+rotation HTracker     (PORT11, false);
+rotation VTracker     (PORT12, false);
+inertial Inertial1    (PORT19);
+inertial Inertial2    (PORT20);
 
-odometry::tracker c_horizontal  (&HTracker, 0, 2.75);
-odometry::tracker c_vertical    (&VTracker, 0, 2.75);
+odometry::tracker c_horizontal  (&HTracker, 5.48, 2.75);
+odometry::tracker c_vertical    (&VTracker, -0.08, 2.75);
 odometry Odometry               (&c_horizontal, &c_vertical);
 
 
-motor IntakeL         (PORT5, ratio18_1, false);
-motor IntakeR         (PORT6, ratio18_1, true);
+motor IntakeL         (PORT15, ratio18_1, false);
+motor IntakeR         (PORT16, ratio18_1, true);
 motor_group Intake    (IntakeL, IntakeR);
-motor Conveyor        (PORT7, ratio6_1, false);
+motor Conveyor        (PORT17, ratio6_1, false);
 
 digital_out Lift      (Brain.ThreeWirePort.A);
 
-optical BlockColor    (PORT8);
+optical BlockColor    (PORT18);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

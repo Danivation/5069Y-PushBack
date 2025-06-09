@@ -8,16 +8,16 @@ int CScreen()
 {
   while (true)
   {
-    //Controller.Screen.clearScreen();
+    Controller.Screen.clearScreen();
 
     Controller.Screen.setCursor(1, 1);
-    Controller.Screen.print("I: %3.3f (%1.3f)            ", trueHeading(), toRadians(trueHeading()));
+    Controller.Screen.print("I: %3.3f (%1.3f)          ", trueHeading(), toRadians(trueHeading()));
     Controller.Screen.setCursor(2, 1);
     //Controller.Screen.print("LB: %1.2f            ", LBRotation.position(turns));
     Controller.Screen.setCursor(3, 1);
     Controller.Screen.print("B: %d%%            ", Brain.Battery.capacity(percent));
 
-    wait(50, msec);
+    wait(150, msec);
   }
 }
 
@@ -27,7 +27,12 @@ int BScreen()
   while (true)
   {
     // print things
-    wait(50, msec);
+    Brain.Screen.printAt(0, 40, "L: %1.5f   ", ((Inertial1.rotation(degrees)/360.0f) / std::round(Inertial1.rotation(degrees)/360.0f)));
+    Brain.Screen.printAt(0, 60, "R: %1.5f   ", ((Inertial2.rotation(degrees)/360.0f) / std::round(Inertial2.rotation(degrees)/360.0f)));
+    VecPose pose = Odometry.getPose();
+    Brain.Screen.printAt(0, 100, "x: %2.2f, y: %2.2f, heading: %2.2f             ", pose.x, pose.y, pose.theta);
+
+    wait(100, msec);
   }
 }
 
@@ -48,7 +53,10 @@ void driver()
   ColorLock = true;
   CorrectLock = true;
 
+  vex::task odomTask = launch_task(std::bind(&odometry::startTracking, &Odometry, 0, 0, 0));
+
   task dCScreen             (CScreen);
+  task dBScreen             (BScreen);
 
   task dDrivetrainControl   (DrivetrainControl);
   task dIntakeControl       (IntakeControl);
