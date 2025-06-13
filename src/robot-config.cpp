@@ -8,12 +8,12 @@ using code = vision::code;
 brain Brain;
 controller Controller (primary);
 
-motor LA              (PORT7, ratio6_1, true );
-motor LB              (PORT9, ratio6_1, false);
-motor LC              (PORT8, ratio6_1, true );
-motor RA              (PORT1, ratio6_1, false);
-motor RB              (PORT2, ratio6_1, true );
-motor RC              (PORT3, ratio6_1, false);
+motor LA              (PORT1, ratio6_1, false);
+motor LB              (PORT2, ratio6_1, false);
+motor LC              (PORT3, ratio6_1, true);
+motor RA              (PORT4, ratio6_1, true);
+motor RB              (PORT5, ratio6_1, true);
+motor RC              (PORT6, ratio6_1, false);
 
 motor_group L         (LA, LB, LC);
 motor_group R         (RA, RB, RC);
@@ -28,8 +28,8 @@ odometry::tracker c_vertical    (&VTracker, -0.08, 2.75);
 odometry Odometry               (&c_horizontal, &c_vertical);
 
 
-motor Intake1         (PORT15, ratio18_1, false);
-motor Intake2         (PORT16, ratio18_1, true);
+motor Intake1         (PORT7, ratio6_1, true);
+motor Intake2         (PORT8, ratio6_1, true);
 motor_group Intake    (Intake1, Intake2);
 motor Conveyor        (PORT17, ratio6_1, false);
 
