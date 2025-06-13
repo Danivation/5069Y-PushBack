@@ -9,6 +9,7 @@ extern const vex::controller::button IntakeInButton     = Controller.ButtonR1;
 extern const vex::controller::button IntakeOutButton    = Controller.ButtonR2;
 
 extern const vex::controller::button LiftToggle         = Controller.ButtonDown;
+extern const vex::controller::button TrapdoorToggle     = Controller.ButtonRight;
 
 
 int selectedAuton = 0;
@@ -283,6 +284,56 @@ int IntakeControl()
 
 
 int LiftControl()
+{
+  bool LiftState = !Lift.value();
+  while (true)
+  {
+    Lift.set(!LiftState);
+    waitUntil(!LiftToggle.pressing());
+    waitUntil(LiftToggle.pressing());
+    LiftState = Lift.value();
+  }
+}
+
+int TrapdoorControl()
+{
+  bool TrapdoorState = !Trapdoor.value();
+  while (true)
+  {
+    Trapdoor.set(!TrapdoorState);
+    waitUntil(!TrapdoorToggle.pressing());
+    waitUntil(TrapdoorToggle.pressing());
+    TrapdoorState = Trapdoor.value();
+  }
+}
+
+int LoaderControl()
+{
+  bool LiftState = !Lift.value();
+  while (true)
+  {
+    Lift.set(!LiftState);
+    waitUntil(!LiftToggle.pressing());
+    waitUntil(LiftToggle.pressing());
+    LiftState = Lift.value();
+  }
+}
+
+
+int StopperControl()
+{
+  bool LiftState = !Lift.value();
+  while (true)
+  {
+    Lift.set(!LiftState);
+    waitUntil(!LiftToggle.pressing());
+    waitUntil(LiftToggle.pressing());
+    LiftState = Lift.value();
+  }
+}
+
+
+int ParkerControl()
 {
   bool LiftState = !Lift.value();
   while (true)

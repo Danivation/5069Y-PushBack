@@ -61,6 +61,7 @@ void driver()
   task dDrivetrainControl   (DrivetrainControl);
   task dIntakeControl       (IntakeControl);
   task dLiftControl         (LiftControl);
+  task dTrapdoorControl     (TrapdoorControl);
 }
 
 void auton()

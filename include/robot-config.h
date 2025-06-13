@@ -26,6 +26,10 @@ extern motor_group Intake;
 extern motor Conveyor;
 
 extern digital_out Lift;
+extern digital_out Trapdoor;
+extern digital_out Loader;
+extern digital_out Stopper;
+extern digital_out Parker;
 
 extern optical BlockColor;
 

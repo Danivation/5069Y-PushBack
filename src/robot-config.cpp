@@ -28,12 +28,16 @@ odometry::tracker c_vertical    (&VTracker, -0.08, 2.75);
 odometry Odometry               (&c_horizontal, &c_vertical);
 
 
-motor IntakeL         (PORT15, ratio18_1, false);
-motor IntakeR         (PORT16, ratio18_1, true);
-motor_group Intake    (IntakeL, IntakeR);
+motor Intake1         (PORT15, ratio18_1, false);
+motor Intake2         (PORT16, ratio18_1, true);
+motor_group Intake    (Intake1, Intake2);
 motor Conveyor        (PORT17, ratio6_1, false);
 
 digital_out Lift      (Brain.ThreeWirePort.A);
+digital_out Trapdoor  (Brain.ThreeWirePort.B);
+digital_out Loader    (Brain.ThreeWirePort.C);
+digital_out Stopper   (Brain.ThreeWirePort.D);
+digital_out Parker    (Brain.ThreeWirePort.E);
 
 optical BlockColor    (PORT18);
 

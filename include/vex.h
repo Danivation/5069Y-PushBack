@@ -36,10 +36,13 @@
 #include "odom.hpp"
 #include "oldramsete.hpp"
 #include "pypaths.hpp"
-#include "2dmp.hpp"
 
 #include "CubicBezier.hpp"
 #include "MathFunctions.hpp"
+
+#include "vmplib/types.hpp"
+#include "vmplib/motion-profiler.hpp"
+#include "vmplib/motion-profiling.hpp"
 
 
 #define waitUntil(condition)                                                   \

@@ -13,3 +13,7 @@ int AutonSelect();
 int DrivetrainControl();
 int IntakeControl();
 int LiftControl();
+int TrapdoorControl();
+int LoaderControl();
+int StopperControl();
+int ParkerControl();
