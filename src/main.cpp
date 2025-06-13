@@ -27,8 +27,8 @@ int BScreen()
   while (true)
   {
     // print things
-    Brain.Screen.printAt(0, 40, "1: %1.5f \t\t\t\t\t", ((Inertial1.rotation(degrees)/360.0f) / std::round(Inertial1.rotation(degrees)/360.0f)));
-    Brain.Screen.printAt(0, 60, "2: %1.5f \t\t\t\t\t", ((Inertial2.rotation(degrees)/360.0f) / std::round(Inertial2.rotation(degrees)/360.0f)));
+    Brain.Screen.printAt(0, 40, "1: %1.5f                     ", ((Inertial1.rotation(degrees)/360.0f) / std::round(Inertial1.rotation(degrees)/360.0f)));
+    Brain.Screen.printAt(0, 60, "2: %1.5f                     ", ((Inertial2.rotation(degrees)/360.0f) / std::round(Inertial2.rotation(degrees)/360.0f)));
     VecPose pose = Odometry.getPose();
     Brain.Screen.printAt(0, 100, "x: %2.2f, y: %2.2f, heading: %2.2f             ", pose.x, pose.y, pose.theta);
 
