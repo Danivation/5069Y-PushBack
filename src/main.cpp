@@ -46,10 +46,8 @@ void driver()
   Brain.Screen.clearScreen();
 
   task::stop(PID);
-  L.stop(coast);
-  R.stop(coast);
-  L.setStopping(coast);
-  R.setStopping(coast);
+  L.stop(hold);
+  R.stop(hold);
   ColorLock = true;
   CorrectLock = true;
 
@@ -100,8 +98,8 @@ int main()
   std::cout << "INIT DONE \n";
 
   // setup things 
-  L.setStopping(coast);
-  R.setStopping(coast);
+  L.setStopping(hold);
+  R.setStopping(hold);
   Lift.set(false);
   Conveyor.setStopping(hold);
   Conveyor.setVelocity(600, rpm);

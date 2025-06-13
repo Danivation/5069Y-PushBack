@@ -267,18 +267,14 @@ int IntakeControl()
   {
     if (IntakeInButton.pressing())
     {
-      Conveyor.spin(forward, 12, volt);
       Intake.spin(forward, 12, volt);
       waitUntil(!IntakeInButton.pressing());
-      Conveyor.stop();
       Intake.stop();
     }
     if (IntakeOutButton.pressing())
     {
-      Conveyor.spin(reverse, 12, volt);
       Intake.spin(reverse, 12, volt);
       waitUntil(!IntakeOutButton.pressing());
-      Conveyor.stop();
       Intake.stop();
     }
   }

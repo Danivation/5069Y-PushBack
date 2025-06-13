@@ -58,7 +58,10 @@ float trueHeading()
 {
   // rotation is -inf to +inf, so averaging them will not have issues of 360-0 rollover
   // reducing back to 0-360 afterwards makes sure its in a good format for everything else
-  return reduce_0_to_360((Inertial1.rotation()/0.99531 + Inertial2.rotation()/0.99086) / 2);
+  if (Inertial1.installed() && Inertial2.installed()) return reduce_0_to_360((Inertial1.rotation() + Inertial2.rotation()) / 2);
+  if (!Inertial1.installed()) return reduce_0_to_360(Inertial2.rotation());
+  if (!Inertial2.installed()) return reduce_0_to_360(Inertial1.rotation());
+  else return 0.0f;
 }
 
 float trueRotation()

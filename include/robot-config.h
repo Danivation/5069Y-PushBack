@@ -23,7 +23,6 @@ extern motor_group R;
 extern motor IntakeL;
 extern motor IntakeR;
 extern motor_group Intake;
-extern motor Conveyor;
 
 extern digital_out Lift;
 extern digital_out Trapdoor;
