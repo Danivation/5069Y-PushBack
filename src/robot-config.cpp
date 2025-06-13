@@ -45,8 +45,8 @@ rotation VTracker     (PORT10, false);
 rotation HTracker     (PORT19, false);
 
 
-odometry::tracker c_horizontal  (&HTracker, 5.68, 2.75);
-odometry::tracker c_vertical    (&VTracker, -0.08, 2.75);
+odometry::tracker c_horizontal  (&HTracker, 4.31, 2.75);        // positive is back
+odometry::tracker c_vertical    (&VTracker, 1.22, 2.75);        // positive is left
 odometry Odometry               (&c_horizontal, &c_vertical);
 
 

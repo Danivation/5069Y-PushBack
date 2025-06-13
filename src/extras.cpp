@@ -60,7 +60,7 @@ float trueHeading()
   // reducing back to 0-360 afterwards makes sure its in a good format for everything else
   if (Inertial1.installed() && Inertial2.installed()) return reduce_0_to_360((Inertial1.rotation() + Inertial2.rotation()) / 2);
   if (!Inertial1.installed()) return reduce_0_to_360(Inertial2.rotation());
-  if (!Inertial2.installed()) return reduce_0_to_360(Inertial1.rotation());
+  if (!Inertial2.installed()) return reduce_0_to_360(Inertial1.rotation()/0.99713);
   else return 0.0f;
 }
 
