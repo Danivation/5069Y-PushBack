@@ -10,6 +10,8 @@ extern const vex::controller::button IntakeOutButton    = Controller.ButtonR2;
 
 extern const vex::controller::button LiftToggle         = Controller.ButtonDown;
 extern const vex::controller::button TrapdoorToggle     = Controller.ButtonRight;
+extern const vex::controller::button LoaderToggle       = Controller.ButtonB;
+extern const vex::controller::button StopperToggle      = Controller.ButtonY;
 
 
 int selectedAuton = 0;
@@ -309,26 +311,26 @@ int TrapdoorControl()
 
 int LoaderControl()
 {
-  bool LiftState = !Lift.value();
+  bool LoaderState = !Loader.value();
   while (true)
   {
-    Lift.set(!LiftState);
-    waitUntil(!LiftToggle.pressing());
-    waitUntil(LiftToggle.pressing());
-    LiftState = Lift.value();
+    Loader.set(!LoaderState);
+    waitUntil(!LoaderToggle.pressing());
+    waitUntil(LoaderToggle.pressing());
+    LoaderState = Loader.value();
   }
 }
 
 
 int StopperControl()
 {
-  bool LiftState = !Lift.value();
+  bool StopperState = !Stopper.value();
   while (true)
   {
-    Lift.set(!LiftState);
-    waitUntil(!LiftToggle.pressing());
-    waitUntil(LiftToggle.pressing());
-    LiftState = Lift.value();
+    Stopper.set(!StopperState);
+    waitUntil(!StopperToggle.pressing());
+    waitUntil(StopperToggle.pressing());
+    StopperState = Stopper.value();
   }
 }
 

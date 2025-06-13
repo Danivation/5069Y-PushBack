@@ -61,6 +61,8 @@ void driver()
   task dDrivetrainControl   (DrivetrainControl);
   task dIntakeControl       (IntakeControl);
   task dLiftControl         (LiftControl);
+  task dLoaderControl       (LoaderControl);
+  task dStopperControl      (StopperControl);
   task dTrapdoorControl     (TrapdoorControl);
 }
 

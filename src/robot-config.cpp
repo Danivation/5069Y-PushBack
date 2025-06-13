@@ -35,8 +35,8 @@ motor Conveyor        (PORT17, ratio6_1, false);
 
 digital_out Lift      (Brain.ThreeWirePort.A);
 digital_out Trapdoor  (Brain.ThreeWirePort.B);
-digital_out Loader    (Brain.ThreeWirePort.C);
-digital_out Stopper   (Brain.ThreeWirePort.D);
+digital_out Stopper   (Brain.ThreeWirePort.C);
+digital_out Loader    (Brain.ThreeWirePort.D);
 digital_out Parker    (Brain.ThreeWirePort.E);
 
 optical BlockColor    (PORT18);
