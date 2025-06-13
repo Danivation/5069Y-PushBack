@@ -48,6 +48,8 @@ void driver()
   task::stop(PID);
   L.stop(hold);
   R.stop(hold);
+  L.setStopping(coast);
+  R.setStopping(coast);
   ColorLock = true;
   CorrectLock = true;
 
@@ -98,13 +100,11 @@ int main()
   std::cout << "INIT DONE \n";
 
   // setup things 
-  L.setStopping(hold);
-  R.setStopping(hold);
+  L.setStopping(coast);
+  R.setStopping(coast);
   Lift.set(false);
-  Conveyor.setStopping(hold);
-  Conveyor.setVelocity(600, rpm);
   Intake.setStopping(hold);
-  Intake.setVelocity(200, rpm);
+  Intake.setVelocity(600, rpm);
   BlockColor.integrationTime(2);
 
   // make sure nothing is unplugged
