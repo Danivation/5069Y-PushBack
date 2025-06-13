@@ -1,4 +1,4 @@
-#include "Math/MathFunctions.hpp"
+#include "MathFunctions.hpp"
 namespace CMath {
     double degToRad(double n) {
         return n * CMath::PI / 180.0;
